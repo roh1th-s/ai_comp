@@ -35,6 +35,7 @@ function FullLayout() {
   const [html, setHtml] = useState<string>(`
 <p>This is rendered using dangerouslySetInnerHTML</p>
 <h1>Hello world </h1>
+<button onclick="h()">click me</button>
       `);
   const [css, setCss] = useState<string>(`
 p  {
@@ -46,7 +47,9 @@ h1 {
 }
       `);
   const [js, setJs] = useState<string>(`
-alert("Hello")
+    function h() {
+      alert("workin")
+    }
     `);
 
   const handleSave = () => {
