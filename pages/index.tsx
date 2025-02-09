@@ -1,11 +1,16 @@
-import { ColorSchemeToggle } from '../components/ColorSchemeToggle/ColorSchemeToggle';
-import { Welcome } from '../components/Welcome/Welcome';
+import { Field } from "@/components/inputForm/inputForm";
+
 
 export default function HomePage() {
   return (
-    <>
-      <Welcome />
-      <ColorSchemeToggle />
-    </>
+    <main className='w-screen h-screen flex flex-col  justify-center items-center'>
+      
+      <section className=" w-96 h-96 ">
+        <Field />
+      </section>
+
+
+
+    </main>
   );
 }
