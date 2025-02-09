@@ -8,8 +8,8 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation'
 
 function doStuff(n:string | undefined,u:string | undefined ,a:string | undefined , router:any) {
-  sessionStorage.setItem("API", a)
-  localStorage.setItem('name', n)
+  if (a) sessionStorage.setItem("API", a)
+  if (n) localStorage.setItem('name', n)
   if(!n || !u || !a){
     alert("Empty Fields")
   }
