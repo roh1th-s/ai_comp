@@ -21,6 +21,7 @@
     "storybook:build": "storybook build"
   },
   "dependencies": {
+    "@google/generative-ai": "^0.21.0",
     "@mantine/code-highlight": "^7.16.2",
     "@mantine/core": "7.16.2",
     "@mantine/hooks": "7.16.2",
