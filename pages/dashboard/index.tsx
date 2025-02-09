@@ -2,15 +2,26 @@ import '@mantine/code-highlight/styles.css';
 
 import { useEffect, useState } from 'react';
 import {
+  IconMoonFilled,
   IconDeviceFloppy,
   IconExternalLink,
   IconFileTypeCss,
   IconFileTypeHtml,
   IconFileTypeJs,
   IconSend,
+  IconSunHighFilled,
 } from '@tabler/icons-react';
 import { CodeHighlight } from '@mantine/code-highlight';
-import { AppShell, Burger, Button, Group, Input, Notification } from '@mantine/core';
+import {
+  ActionIcon,
+  AppShell,
+  Burger,
+  Button,
+  Group,
+  Input,
+  Notification,
+  useMantineColorScheme,
+} from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 
 const combineCode = (html: string, css: string, js: string) => {
@@ -32,6 +43,8 @@ const combineCode = (html: string, css: string, js: string) => {
 
 function FullLayout() {
   const [opacity, setOpacity] = useState<number>(0);
+  const { setColorScheme } = useMantineColorScheme();
+  const [theme, settheme] = useState<'light'| 'dark'>('light');
   const [html, setHtml] = useState<string>(`
 <p>This is rendered using dangerouslySetInnerHTML</p>
 <h1>Hello world </h1>
@@ -86,13 +99,13 @@ h1 {
 
   const renderFile = (file: number) => {
     if (file == 0) {
-      return <CodeHighlight bg={'white'} code={html} language="html" />;
+      return <CodeHighlight bg={ (theme=='light')? "white" : '#242424'} code={html} language="html" />;
     }
     if (file == 1) {
-      return <CodeHighlight bg={'white'} code={css} language="css" />;
+      return <CodeHighlight bg={ (theme=='light')? "white" : '#242424'} code={css} language="css" />;
     }
     if (file == 2) {
-      return <CodeHighlight bg={'white'} code={js} language="js" />;
+      return <CodeHighlight bg={ (theme=='light')? "white" : '#242424'} code={js} language="js" />;
     }
   };
 
@@ -108,7 +121,22 @@ h1 {
         <Group h="100%" px="md" justify="space-between">
           <Burger opened={opened} onClick={toggle} hiddenFrom="sm" size="sm" />
           <h1>Welcome</h1>
-          <div>
+          <div className="flex flex-row   justify-center items-center">
+            <ActionIcon variant="transparent" aria-label="Theme" className='mr-4' onClick={() => {
+              if (theme == 'light') {
+                setColorScheme("dark")
+                settheme('dark')
+              }
+              else {
+                setColorScheme("light")
+                settheme('light')
+              }
+            }}>
+              {
+                (theme=='light')? <IconMoonFilled style={{ width: '70%', height: '70%' }} stroke={1.5} /> :<IconSunHighFilled style={{ width: '70%', height: '70%' }} stroke={1.5} /> 
+              }
+              
+            </ActionIcon>
             <Button
               onClick={handleSave}
               variant="outline"
@@ -126,7 +154,7 @@ h1 {
       <AppShell.Navbar p="md">
         <Button
           variant="subtle"
-          color="rgba(0, 0, 0, 1)"
+          color="gray"
           radius="md"
           justify="start"
           leftSection={<IconFileTypeHtml size={16} />}
@@ -139,7 +167,7 @@ h1 {
 
         <Button
           variant="subtle"
-          color="rgba(0, 0, 0, 1)"
+          color="gray"
           radius="md"
           justify="start"
           leftSection={<IconFileTypeCss size={16} />}
@@ -152,7 +180,7 @@ h1 {
 
         <Button
           variant="subtle"
-          color="rgba(0, 0, 0, 1)"
+          color="gray"
           radius="md"
           justify="start"
           leftSection={<IconFileTypeJs size={16} />}

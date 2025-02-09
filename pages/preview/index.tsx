@@ -23,7 +23,7 @@ export default function HomePage() {
     }, []);
 
     return (
-        <main className=''>
+        <main className=' bg-white'>
             <iframe ref={iframeRef} style={{ width: "100vw", height: "100vh", border: "1px solid black" }} />
         </main>
     );
