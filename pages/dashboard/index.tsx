@@ -7,35 +7,11 @@ import { IconFileTypeHtml, IconFileTypeCss, IconFileTypeJs, IconExternalLink, Ic
 import { CodeHighlight } from '@mantine/code-highlight';
 
 
-const htmlC = `<AppShell
-      header={{ height: 60 }}
-      footer={{ height: 60 }}
-      navbar={{ width: 200, breakpoint: 'sm', collapsed: { mobile: !opened } }}
-      aside={{ width: 300, breakpoint: 'md', collapsed: { desktop: false, mobile: true } }}
-      padding="md"
-    >
-      <AppShell.Header>
-        <Group h="100%" px="md">
-          <Burger opened={opened} onClick={toggle} hiddenFrom="sm" size="sm" />
-          Hello 
-        </Group>
-      </AppShell.Header>
-      <AppShell.Navbar p="md">
-         <Button variant="subtle"  color="rgba(0, 0, 0, 1)" radius="md" justify='start'  leftSection={<IconFileTypeHtml size={16} />} 
-         onClick={() => {setFile(0)}}
-         ><p className=' font-normal'>index.html</p></Button>
-
-         <Button variant="subtle"  color="rgba(0, 0, 0, 1)" radius="md" justify='start' leftSection={<IconFileTypeCss size={16} /> } 
-         onClick={() => {setFile(1)}}><p className=' font-normal'>style.css</p></Button>
-
-         <Button variant="subtle"  color="rgba(0, 0, 0, 1)" radius="md" justify='start' leftSection={<IconFileTypeJs size={16} />} 
-         onClick={() => {setFile(2)}}><p className=' font-normal'>main.js</p></Button>
-      </AppShell.Navbar>
-      
-      <AppShell.Main>`
-const cssC = `main : {
-padding : 2px ;
-}`
+const htmlC = `
+<style></style>
+<p style='color:blue;'>This is rendered using dangerouslySetInnerHTML</p>
+`
+const cssC = `p : font-size:2rem;`
 const jsC = `
 // VisuallyHidden component source code
 
@@ -136,9 +112,7 @@ function renderFile(file:number){
       <Button ml={12}><IconSend size={16} /></Button>
         </div>
 
-      <div className='w-full h-[90%] bg-slate-100 mt-6 rounded-lg p-6'>
-      Preview Window
-      </div>
+
         
       </div>
 
@@ -147,6 +121,5 @@ function renderFile(file:number){
     </AppShell>
   );
 }
-
 
 export default FullLayout;
